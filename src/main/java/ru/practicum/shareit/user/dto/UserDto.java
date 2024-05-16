@@ -2,6 +2,9 @@ package ru.practicum.shareit.user.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class UserDto {
 
@@ -9,6 +12,8 @@ public class UserDto {
 
     private String name;
 
+    @NotBlank(message = "Электронная почта не может быть пустой и должна содержать символ @")
+    @Email(message = "Электронная почта не может быть пустой и должна содержать символ @")
     private String email;
 
     public UserDto(String name, String email, Long id) {
