@@ -3,26 +3,22 @@ package ru.practicum.shareit.item.check;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.practicum.shareit.item.ItemServiceImpl;
-import ru.practicum.shareit.user.UserServiceImpl;
+import ru.practicum.shareit.item.ItemService;
+import ru.practicum.shareit.user.UserService;
 
 @Service
 public class CheckService {
-    private UserServiceImpl userService;
-    private ItemServiceImpl itemService;
+    private UserService userService;
+    private ItemService itemService;
 
     @Autowired
-    public CheckService(UserServiceImpl userService, ItemServiceImpl itemService) {
+    public CheckService(UserService userService, ItemService itemService) {
         this.userService = userService;
         this.itemService = itemService;
     }
 
     public boolean isExistUser(Long userId) {
-        boolean exist = false;
-        if (userService.getUserById(userId) != null) {
-            exist = true;
-        }
-        return exist;
+        return userService.getUserById(userId) != null;
     }
 
     public void deleteItemsByUser(Long userId) {
